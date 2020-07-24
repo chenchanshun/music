@@ -1,0 +1,28 @@
+export const SET_FULL_SCREEN ='SET_FULL_SCREEN'
+export const SET_MINI_PLAYER ='SET_MINI_PLAYER'
+export const SET_SHOW_PLAYERING ='SET_SHOW_PLAYERING'
+export const SET_MODE_TYPE ='SET_MODE_TYPE'
+export const SET_LIST_TYPE ='SET_LIST_TYPE'
+export const SET_SONS_LIST ='SET_SONS_LIST'
+export const SET_LYRIC ='SET_LYRIC'
+export const GET_TYPE ='GET_TYPE'
+export const GET_ID ='GET_ID'
+export const LYRIC_ISSHOW ='LYRIC_ISSHOW'
+export const DELENT_SONGS ='DELENT_SONGS'
+export const SET_CURRENT_PLAY ='SET_CURRENT_PLAY'
+export const SET_CURRENT_TIME ='SET_CURRENT_TIME'
+export const SET_FAVORITES ='SET_FAVORITES'
+export const SET_FAVORITES_LIST ='SET_FAVORITES_LIST'
+export const HISOTRY ='HISOTRY'
+export const HISOTRYLIST ='HISOTRYLIST'
+
+
+
+
+
+
+
+
+
+
+

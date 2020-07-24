@@ -1,0 +1,109 @@
+<template>
+  <div class="dtail">
+    <SubHeader :title="playlist.name"></SubHeader>
+    <DetailImg :path="playlist.coverImgUrl" ref="top"></DetailImg>
+    <div class="bottom">
+        <Scrollview ref="scrollview">
+        <Detailbottom :playlist="playlist.tracks"></Detailbottom>
+        </Scrollview>
+    </div>
+  </div>
+</template>
+<script>
+import SubHeader from '../components/SubHeader'
+import DetailImg from '../components/Detailimg'
+import Detailbottom from '../components/detailBottom'
+import Scrollview from '../components/scrollview'
+import { getplaylist,getnAlbum } from '../api/index'
+export default {
+    name:'Dtail',
+    components:{
+      SubHeader,
+      DetailImg,
+      Detailbottom,
+      Scrollview
+    },
+    data:function(){
+      return {
+        playlist:{}
+      }
+    },
+
+    created(){
+      // console.log(this.$route.params.type)
+      if(this.$route.params.type == 'Personalized'){
+        getplaylist({
+        //取出事先$router.push进去的id
+        id:this.$route.params.id
+      })
+      .then((data) =>{
+        // console.log(data)
+        this.playlist = data.playlist
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      }else if(this.$route.params.type == 'albums'){
+        //传入id = album/id=156151
+      getnAlbum({id:this.$route.params.id}).then((data)=>{
+        // console.log(data)
+        this.playlist = {
+          name:data.album.name,
+          coverImgUrl:data.album.blurPicUrl,
+          tracks:data.songs
+              }
+        
+            }
+         )
+     .catch(function(err){
+      console.log(err)
+      })
+      
+      }
+      },
+
+   
+    mounted(){
+      let defaultHeight = this.$refs.top.$el.offsetHeight
+      console.log(defaultHeight)
+      
+      //获取偏移位
+
+      this.$refs.scrollview.scrolling((offsetY) =>{
+         if(offsetY <0){
+          console.log(offsetY)
+         let scale = 10* Math.abs(offsetY) / defaultHeight
+         this.$refs.top.$el.style.filter = `blur(${scale}px)`
+         }else{
+         console.log(offsetY)
+        let scale = 1 + offsetY / defaultHeight
+         this.$refs.top.$el.style.transform = `scale(${scale})`
+         }
+      })
+    }
+
+}
+</script>
+
+<style scoped lang="scss" >
+@import '../assets/css/mixin';
+.dtail{
+  position: fixed;
+  top: 0px;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+  @include bg_sub_color();
+  
+
+}
+.bottom{
+  position: fixed;
+  top: 500px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+}
+
+</style>
