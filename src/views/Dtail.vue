@@ -14,7 +14,7 @@ import SubHeader from '../components/SubHeader'
 import DetailImg from '../components/Detailimg'
 import Detailbottom from '../components/detailBottom'
 import Scrollview from '../components/scrollview'
-import { getplaylist,getnAlbum } from '../api/index'
+import { getplaylist,getnAlbum,getsinger,getrankDtail} from '../api/index'
 export default {
     name:'Dtail',
     components:{
@@ -51,15 +51,43 @@ export default {
           name:data.album.name,
           coverImgUrl:data.album.blurPicUrl,
           tracks:data.songs
-              }
-        
+          }
+        }
+       )
+      .catch(function(err){
+          console.log(err)
+          })
+        }else if(this.$route.params.type == 'singer'){
+        //传入id = album/id=156151
+        getsinger({id:this.$route.params.id}).then((data)=>{
+          console.log(data)
+          this.playlist = {
+            name:data.artist.name,
+            coverImgUrl:data.artist.img1v1Url,
+            tracks:data.hotSongs
             }
-         )
-     .catch(function(err){
-      console.log(err)
-      })
-      
-      }
+          }
+        )
+        .catch(function(err){
+            console.log(err)
+            })
+          }else if(this.$route.params.type == 'rank'){
+        //传入id = album/id=156151
+        getrankDtail({id:this.$route.params.id}).then((data)=>{
+          console.log(data)
+          this.playlist = {
+            name:data.playlist.name,
+            coverImgUrl:data.playlist.coverImgUrl,
+            tracks:data.playlist.tracks
+            }
+          }
+        )
+        .catch(function(err){
+            console.log(err)
+            })
+          }
+
+
       },
 
    

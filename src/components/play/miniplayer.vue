@@ -118,7 +118,7 @@ export default {
       animation: sport 2s linear infinite;
       animation-play-state: running;
       &.active{
-      animation-play-state: paused;
+      // animation-play-state: paused;
       }
      }
      .player-title{

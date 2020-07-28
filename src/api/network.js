@@ -1,6 +1,6 @@
 import axios from 'axios'
 // 全局配置
-axios.defaults.baseURL = 'http://172.20.10.2:3000/' //本地node 部署
+axios.defaults.baseURL = 'http://127.0.0.1:3000/' //本地node 部署
 // axios.defaults.baseURL = 'http://musicapi.leanapp.cn' 
 axios.defaults.timeout = 5000
 
@@ -31,6 +31,15 @@ export default {
      reject(error);
    });
   })
-
+},
+all:function(list){
+  return new Promise(function(resolve,reject){
+    axios.all(list)
+    .then(axios.spread(function (...result) {
+     resolve(result)
+   }))
+  })
 }
+
+
 }

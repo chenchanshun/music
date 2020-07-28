@@ -21,6 +21,8 @@ export default {
           disablePointer:true,
           disableTouch:false,
           disableMouse:true,
+          useTransform: true,//CSS转化
+          useTransition: true,//CSS过渡
           // click: true,
           taps:true,
           
@@ -81,8 +83,19 @@ export default {
        setTimeout(()=>{
           this.iscroll.refresh(); 
        },100)
+     },
+     scrollTo(offsetX,offsetY){
+      //  var warp = document.querySelector('#wrapper')
+      //  console.log(this.iscroll.scrollToElement)
+      
+       this.iscroll.scrollTo(offsetX,offsetY,300, IScroll.utils.ease.bounce)
      }
- }
+ },
+//  created(){
+  //  console.log(this.scrollTo)
+   
+//  }
+ 
 
 }
 </script>

@@ -50,7 +50,7 @@ export default{
           // obj.musicurl = song.data[index].url
           for(let j = 0;j<song.data.length;j++){
             let itme = song.data[j]
-            console.log(itme)
+            // console.log(itme)
 
             if(itme.id ==  value.id){
               obj.musicurl = itme.url

@@ -31,7 +31,6 @@ export default {
       "isModeType",
       "currentindex",
       "songs",
-      "currentindex",
       "currTime",
       "favoriteslist",
       "currentsong"
