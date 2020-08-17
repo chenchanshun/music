@@ -1,6 +1,7 @@
 <template>
   <div class="rank">
-     <iscrollview>
+    <div class="rank-warpper">
+       <iscrollview>
     <ul class="rank-titel">
       <li class="titel" v-for="(value,index) in ranking.titles" :key="index">
            <p class="title-top"> {{value}}</p>
@@ -20,17 +21,26 @@
 
           </li>
         </ul>
-        <ul class="rank-dtail-off" v-else>
+        <ul class="rank-dtail-off" v-else-if="index !== 'globalList'">
+           <li class="dtail-off"  v-for="key in ranking[index]" :key="key.id" @click="getrangk(key.rank.id)" >
+             <!-- {{key}} -->
+              <img :src="key.rank.coverImgUrl" alt="" srcset="">
+              <p>{{key.rank.updateFrequency}}</p>  
+              <p >{{key.name}}</p>  
+           </li>
+        </ul>
+        <!-- <ul class="rank-dtail-off" v-else>
            <li class="dtail-off" v-for="key in ranking[index]" :key="key.id" @click="getrangk(key.rank.id)" >
               <img :src="key.rank.coverImgUrl" alt="" srcset="">
               <p>{{key.rank.updateFrequency}}</p>
               <p>{{key.rank.name}}</p>
            </li>
-        </ul>
+        </ul> -->
       </li>
       
     </ul>
  </iscrollview>
+    </div>
     <transition>
        <router-view></router-view>
      </transition>
@@ -71,12 +81,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
- .rank{
-    position: fixed;
+.rank-warpper{
+  position: fixed;
     top: 180px;
     left: 0;
     bottom: 0;
     overflow: hidden;
+}
+ .rank{
+    
    .rank-titel{
      right: 0;
      .titel{

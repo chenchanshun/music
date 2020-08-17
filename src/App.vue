@@ -3,7 +3,10 @@
     <PlayerLyrics></PlayerLyrics>
     <Header></Header>
     <Tabbar></Tabbar>
+    <!-- 指定缓存组件 -->
+    <keep-alive include="search,singer">
     <router-view></router-view>
+    </keep-alive>
     <secomplayer ></secomplayer>
   </div>
 </template>

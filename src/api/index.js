@@ -12,6 +12,7 @@ export const getSong = (data) => network.get('/song/url',data)
 export const getsinger = (data) => network.get('/artists',data)
 export const getrankDtail = (data) => network.get('/top/list',data)
 export const getsearch= (keywords) => network.get('/search/suggest',keywords)
+export const getsearchlist= (keywords) => network.get('/search',keywords)
 export const getPopularrecom= () => network.get('/search/hot/detail')
 
 

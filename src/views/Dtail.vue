@@ -14,7 +14,7 @@ import SubHeader from '../components/SubHeader'
 import DetailImg from '../components/Detailimg'
 import Detailbottom from '../components/detailBottom'
 import Scrollview from '../components/scrollview'
-import { getplaylist,getnAlbum,getsinger,getrankDtail} from '../api/index'
+import { getplaylist,getnAlbum,getsinger,getrankDtail,getsearchlist} from '../api/index'
 export default {
     name:'Dtail',
     components:{
@@ -84,6 +84,23 @@ export default {
         )
         .catch(function(err){
             console.log(err)
+            })
+          }else if(this.$route.params.type == 'search'){
+        //传入id = album/id=156151
+          // 传入id = album/id=156151
+              console.log(this.keywords)
+
+            getsearchlist({keywords:this.$route.params.key})
+            .then((data)=>{
+              console.log(data.result.songs)
+              this.playlist = {
+            name:this.$route.params.key,
+            coverImgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597223810575&di=faf60a7ccd3d4ce5d95195345b3c552d&imgtype=0&src=http%3A%2F%2Fsrc.house.sina.com.cn%2Fimp%2Fimp%2Fdeal%2F5a%2F60%2Fe%2F33b295d894bd9a56342e13f3efe_p1_mk1.jpg',
+            tracks:data.result.songs
+            }
+            })
+            .catch((err)=>{
+              console.log(err)
             })
           }
 

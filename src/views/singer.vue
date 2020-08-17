@@ -1,20 +1,21 @@
 <template>
 <div class="singer">
-<Scrollview ref="scrollview">
-    <ul>
-      <li class="letter" ref="iscroll" v-for="(value,index) in letter" :key="index">
-        <h2 >{{value}}</h2>
-        <ul class="singers">
-          <li v-for="(value) in requset[index] " :key="value.id" @click="switchSinger(value.id)">
-            <div class="imgru">
-            <img v-lazy="value.picUrl" alt="" srcset="">
-            </div>
-            <span>{{value.name}}</span>
-          </li>
-        </ul>
-      </li>
-    </ul>
-</Scrollview>
+  <div class="singer-warpper">
+    <Scrollview ref="scrollview">
+      <ul>
+        <li class="letter" ref="iscroll" v-for="(value,index) in letter" :key="index">
+          <h2 >{{value}}</h2>
+          <ul class="singers">
+            <li v-for="(value) in requset[index] " :key="value.id" @click="switchSinger(value.id)">
+              <div class="imgru">
+              <img v-lazy="value.picUrl" alt="" srcset="">
+              </div>
+              <span>{{value.name}}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+   </Scrollview>
   <ul class="nav">
     <li v-for="(value,index) in letter" 
     @touchstart.stop = "touchstar"
@@ -26,7 +27,9 @@
     </li>
   </ul>
   <div v-show="firsttitle!== ''" class="top-nav" ref="firsttitle">{{firsttitle}}</div>
-       <transition>
+  
+  </div>
+     <transition>
        <router-view></router-view>
      </transition>
 </div>
@@ -48,7 +51,7 @@ export default {
       starpage:0,
       movepage:0,
       iscrollpath:0,
-      firsttitleY:85
+      firsttitleY:85,
     }
   },
   computed:{
@@ -61,7 +64,7 @@ export default {
     }
   },
   components:{
-    Scrollview
+    Scrollview,
   },
   methods:{
     keydwn(index){
@@ -126,7 +129,7 @@ export default {
     //滚动到哪一个区域 导航选中哪一个区域
     this.$refs.scrollview.scrolling((y)=>{
       this.iscrollpath = y
-      console.log(this.iscrollpath)
+      // console.log(this.iscrollpath)
     // 第一个区域
       if(y >=0){
         this.currentindex = 0
@@ -164,14 +167,16 @@ export default {
 
 
 <style lang="scss" scoped>
-.singer{
-  position: fixed;
+.singer-warpper{
+ position: fixed;
   overflow: hidden;
   top: 180px;
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translateY();
+}
+.singer{
+ 
   .nav{
     position: fixed;
     right: 0;

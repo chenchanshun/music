@@ -116,9 +116,9 @@ export default {
       margin-top:20px ;
       margin-right: 20px;
       animation: sport 2s linear infinite;
-      animation-play-state: running;
+      animation-play-state: paused;
       &.active{
-      // animation-play-state: paused;
+      animation-play-state: running;
       }
      }
      .player-title{

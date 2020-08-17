@@ -6,7 +6,8 @@
       </li>
       <li v-for="value in playlist" :key="value.id" class="itme" @click="selectMusic(value.id)">
           <h3>{{value.name}}</h3>
-          <p>{{value.al.name}}-{{value.ar[0].name}}</p>
+          <p v-if="value.al !== undefined">{{value.al.name}}-{{value.ar[0].name}}</p>
+          <p v-if="value.al == undefined">{{value.artists[0].name}}</p>
       </li>
       
   </ul>
@@ -21,11 +22,14 @@ export default {
       type: Array,
       default: ()=>[],
       required: true,
+      
       }
   },
-
-
-  
+  data:function(){
+      return{
+         
+      }
+  },
   methods:{
         ...mapActions([
         'setFullScreen',

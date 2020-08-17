@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     personal(){
-      console.log('ssss')
       this.$router.push({
         path:'/personal'
       })

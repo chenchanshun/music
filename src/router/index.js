@@ -70,7 +70,14 @@ const routes = [
      
  
    component: Recommen },
-  { path: '/search', component: Search },
+  { path: '/search',
+    children:[
+      {
+      path: 'dtail/:key/:type',
+      component:Detail,
+      },
+    ]
+  , component: Search },
   { path: '/singer', 
      children:[
     {
@@ -91,6 +98,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
+  // mode: 'hash',
   base: process.env.BASE_URL,
   routes,
 })
